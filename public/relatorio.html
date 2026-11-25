@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Relatório do projeto — DriveTwin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/pages.css" />
+  </head>
+  <body>
+    <svg class="svg-definitions" aria-hidden="true"><defs><symbol id="i-gauge" viewBox="0 0 24 24"><path d="M20 13a8 8 0 1 0-16 0M12 13l4-4M4 19h16"/></symbol></defs></svg>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="/" aria-label="DriveTwin — início"><span class="logo-mark"><svg class="icon"><use href="#i-gauge" /></svg></span><span>Drive<span>Twin</span></span></a>
+        <nav class="main-nav" aria-label="Navegação principal"><a href="/">Apresentação</a><a href="/catalogo">Catálogo e simulação</a><a href="/relatorio" aria-current="page">Relatório</a><a href="/admin">Admin</a></nav>
+      </div>
+    </header>
+    <main class="page container">
+      <div class="section-heading"><p class="eyebrow">Relatório</p><h1>Relatório do projeto</h1><p>Objetivo, ferramentas, desenvolvimento e conclusão do DriveTwin.</p></div>
+      <div class="report-actions">
+        <a class="button button-large" href="/docs/DriveTwin-Relatorio.pdf" target="_blank" rel="noopener">Abrir em nova aba</a>
+        <a class="button button-large button-soft" href="/docs/DriveTwin-Relatorio.pdf" download>Baixar PDF</a>
+      </div>
+      <section class="panel report-panel" aria-label="Relatório em PDF">
+        <object class="report-frame" data="/docs/DriveTwin-Relatorio.pdf#view=FitH" type="application/pdf">
+          <p class="muted">Seu navegador não mostra PDF aqui. Use os botões acima para abrir ou baixar o relatório.</p>
+        </object>
+      </section>
+    </main>
+    <footer><div class="container footer-inner"><p>© DriveTwin · Laboratório virtual de eficiência automotiva · <a href="/">Início</a></p></div></footer>
+  </body>
+</html>

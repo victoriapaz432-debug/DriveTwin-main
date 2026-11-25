@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catálogo e simulação — DriveTwin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/pages.css" />
+  </head>
+  <body>
+    <svg class="svg-definitions" aria-hidden="true"><defs><symbol id="i-gauge" viewBox="0 0 24 24"><path d="M20 13a8 8 0 1 0-16 0M12 13l4-4M4 19h16"/></symbol></defs></svg>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="/" aria-label="DriveTwin — início"><span class="logo-mark"><svg class="icon"><use href="#i-gauge" /></svg></span><span>Drive<span>Twin</span></span></a>
+        <nav class="main-nav" aria-label="Navegação principal"><a href="/">Apresentação</a><a href="/catalogo" aria-current="page">Catálogo e simulação</a><a href="/relatorio">Relatório</a><a href="/admin" >Admin</a></nav>
+      </div>
+    </header>
+    <main class="page container">
+      <div class="section-heading"><p class="eyebrow">Catálogo e simulação</p><h1>Escolha um carro e teste a eficiência</h1><p>Selecione um carro, escolha o percurso e rode o teste no simulador 3D. Os resultados mostram consumo, custo e emissões.</p></div>
+
+      <div class="cat-layout">
+        <aside class="panel">
+          <h2 class="panel-title">Carros</h2>
+          <ul class="car-list" id="car-list"><li class="loading">Carregando carros…</li></ul>
+        </aside>
+        <section class="panel" aria-live="polite">
+          <div class="car-head"><div><h2 id="car-title" class="panel-title">—</h2><p id="car-sub" class="muted"></p></div><span class="grade" id="car-grade" aria-label="Nota de eficiência">–</span></div>
+          <div class="metric-tiles" id="car-metrics"></div>
+        </section>
+      </div>
+
+      <section class="panel sim" aria-label="Simulador 3D">
+        <h2 class="panel-title">Simulador 3D</h2>
+        <p class="muted sim-car" id="sim-car">Selecione um carro na lista.</p>
+        <div class="sim-view" id="view"><div id="hud"><b id="hv">0</b> <small>km/h</small></div><div class="sim-progress"><i id="prog"></i></div></div>
+        <div class="sim-grid">
+          <label><span>Percurso</span><select id="route"><option value="cidade">Cidade</option><option value="estrada">Estrada</option><option value="misto">Misto (cidade + estrada)</option></select></label>
+          <label><span>Combustível</span><select id="fuel"><option value="gasolina">Gasolina</option><option value="etanol">Etanol</option></select></label>
+          <label><span>Pessoas a bordo</span><select id="persons"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        </div>
+        <div class="sim-actions">
+          <button class="button button-large" id="go" type="button">Iniciar teste</button>
+          <button class="button button-large button-soft" id="rs" type="button">Reiniciar</button>
+        </div>
+        <div class="kpis">
+          <div><small>Tempo</small><b id="k-time">0:00</b></div><div><small>Distância</small><b id="k-km">0,00 km</b></div><div><small>Combustível gasto</small><b id="k-litres">0,00 L</b></div><div><small>Custo</small><b id="k-cost">R$ 0,00</b></div>
+        </div>
+        <small class="muted">Velocidade (km/h) durante o teste</small>
+        <canvas id="chart"></canvas>
+        <div id="result" hidden>
+          <h3 class="panel-title result-title">Resultado do teste</h3>
+          <div class="metric-tiles" id="result-tiles"></div>
+        </div>
+        <p class="muted note" id="sim-note"></p>
+      </section>
+
+      <section class="panel" aria-label="Eficiência por modelo">
+        <h2 class="panel-title">Eficiência por modelo</h2>
+        <div class="table-wrap"><table class="eff-table"><thead><tr><th>Modelo</th><th>Consumo misto</th><th>Autonomia</th><th>CO₂</th><th>Custo/km</th><th>0–100 km/h</th><th>Pontos</th><th>Nota</th></tr></thead><tbody id="eff-body"></tbody></table></div>
+        <p class="muted note" id="fuel-note"></p>
+      </section>
+
+      <section class="panel" aria-label="Especificação da nota de eficiência">
+        <h2 class="panel-title">Como a nota de eficiência é calculada</h2>
+        <div id="grade-spec"></div>
+      </section>
+    </main>
+    <script src="/vendor/three.min.js"></script>
+    <script type="module" src="/js/catalogo.js"></script>
+  </body>
+</html>

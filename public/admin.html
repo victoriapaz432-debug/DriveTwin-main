@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin — DriveTwin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/pages.css" />
+  </head>
+  <body>
+    <svg class="svg-definitions" aria-hidden="true"><defs><symbol id="i-gauge" viewBox="0 0 24 24"><path d="M20 13a8 8 0 1 0-16 0M12 13l4-4M4 19h16"/></symbol></defs></svg>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="/" aria-label="DriveTwin — início"><span class="logo-mark"><svg class="icon"><use href="#i-gauge" /></svg></span><span>Drive<span>Twin</span></span></a>
+        <nav class="main-nav" aria-label="Navegação principal"><a href="/">Apresentação</a><a href="/catalogo" >Catálogo e simulação</a><a href="/relatorio">Relatório</a><a href="/admin" aria-current="page">Admin</a></nav>
+      </div>
+    </header>
+    <main class="page container">
+      <section class="panel narrow-page" id="login-view" hidden>
+        <h1 class="panel-title">Entrar na área administrativa</h1>
+        <form id="login-form" class="form">
+          <label><span>Usuário</span><input name="username" autocomplete="username" required></label>
+          <label><span>Senha</span><input name="password" type="password" autocomplete="current-password" required></label>
+          <p class="error-message" id="login-error" role="alert" hidden></p>
+          <button class="button button-large" type="submit">Entrar</button>
+        </form>
+      </section>
+
+      <div id="panel-view" hidden>
+        <section class="panel admin-bar">
+          <div><h1 class="panel-title">Área administrativa</h1><p class="muted">Conectado como <b id="who"></b>. Só administradores podem cadastrar veículos no catálogo.</p></div>
+          <button class="button button-soft" id="logout" type="button">Sair</button>
+        </section>
+
+        <section class="panel">
+          <h2 class="panel-title" id="form-title">Cadastrar veículo</h2>
+          <form id="car-form" class="form" novalidate>
+            <fieldset><legend>Identificação</legend>
+              <label><span>Marca</span><input name="brand" maxlength="40" required></label>
+              <label><span>Modelo</span><input name="model" maxlength="60" required></label>
+              <label><span>Ano</span><input name="year" type="number" step="1" required></label>
+              <label><span>Combustível</span><select name="fuel_type"><option value="flex">Flex (gasolina e etanol)</option><option value="gasolina">Somente gasolina</option></select></label>
+            </fieldset>
+            <fieldset><legend>Simulação</legend>
+              <label><span>Massa (kg)</span><input name="mass_kg" type="number" step="any" required></label>
+              <label><span>Potência (cv)</span><input name="power_cv" type="number" step="any" required></label>
+              <label><span>Velocidade máxima (km/h)</span><input name="top_speed_kmh" type="number" step="any" required></label>
+            </fieldset>
+            <fieldset><legend>Consumo e emissões</legend>
+              <label><span>Tanque (litros)</span><input name="tank_l" type="number" step="any" required></label>
+              <label><span>Gasolina na cidade (km/l)</span><input name="km_l_city" type="number" step="any" required></label>
+              <label><span>Gasolina na estrada (km/l)</span><input name="km_l_road" type="number" step="any" required></label>
+              <label data-flex><span>Etanol na cidade (km/l)</span><input name="km_l_ethanol_city" type="number" step="any"></label>
+              <label data-flex><span>Etanol na estrada (km/l)</span><input name="km_l_ethanol_road" type="number" step="any"></label>
+              <label><span>Emissões de CO₂ (g/km)</span><input name="co2_g_km" type="number" step="any" required></label>
+            </fieldset>
+            <p class="error-message" id="form-error" role="alert" hidden></p>
+            <p class="ok-message" id="form-ok" role="status" hidden></p>
+            <div class="form-actions">
+              <button class="button button-large" id="form-submit" type="submit">Cadastrar veículo</button>
+              <button class="button button-large button-soft" id="form-cancel" type="button" hidden>Cancelar edição</button>
+            </div>
+          </form>
+          <p class="muted note">Consumo misto, autonomia, custo por km e aceleração 0–100 km/h são calculados automaticamente.</p>
+        </section>
+
+        <section class="panel">
+          <h2 class="panel-title">Veículos no catálogo</h2>
+          <div class="table-wrap"><table class="eff-table"><thead><tr><th>Veículo</th><th>Ano</th><th>Massa</th><th>Potência</th><th>Vel. máx.</th><th>Combustível</th><th></th></tr></thead><tbody id="cars-body"></tbody></table></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/js/admin.js"></script>
+  </body>
+</html>
